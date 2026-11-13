@@ -38,7 +38,7 @@ export function Hero({ lang }: { lang: Lang }) {
         <div className="absolute -right-24 top-10 h-[420px] w-[420px] rounded-full bg-[#a78bfa] blur-[110px]" style={{ opacity: 'calc(var(--glow) * 0.55)' }} />
         <div className="absolute right-40 top-56 h-[300px] w-[300px] rounded-full bg-[#60a5fa] blur-[110px]" style={{ opacity: 'calc(var(--glow) * 0.45)' }} />
       </div>
-      <div className="relative mx-auto grid max-w-page items-center gap-12 px-4 pb-16 pt-32 sm:px-6 md:grid-cols-[1.15fr_1fr] md:pb-24 md:pt-40">
+      <div className="relative mx-auto grid max-w-page items-center gap-12 px-4 pb-16 pt-32 sm:px-6 lg:grid-cols-[1.15fr_1fr] md:pb-24 md:pt-40">
         <div>
           <p className="mb-6 inline-flex items-center gap-2 font-mono text-xs text-ink3">
             <span className="h-1.5 w-1.5 rounded-full bg-ok" aria-hidden />
@@ -68,12 +68,12 @@ export function Hero({ lang }: { lang: Lang }) {
         </div>
 
         {/* Portrait with the API panel floating over its lower edge, like a sheet over content. */}
-        <div className="mx-auto w-full min-w-0 md:max-w-sm">
-          <figure className="mx-auto w-64 overflow-hidden rounded-panel sm:w-72 md:w-full hairline border bg-surface shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
+        <div className="mx-auto w-full min-w-0 max-w-md lg:max-w-[26rem]">
+          <figure className="mx-auto w-64 overflow-hidden rounded-panel sm:w-72 lg:w-full hairline border bg-surface shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
             <img
               src={photo800}
               srcSet={`${photo480} 480w, ${photo800} 800w`}
-              sizes="(min-width: 768px) 24rem, 18rem"
+              sizes="(min-width: 1024px) 26rem, 18rem"
               width={800}
               height={1000}
               alt={ui.photoAlt[lang]}
@@ -81,7 +81,7 @@ export function Hero({ lang }: { lang: Lang }) {
               className="aspect-[4/5] w-full object-cover object-top"
             />
           </figure>
-          <div className="glass glass-thick relative -mt-12 rounded-panel p-5 sm:p-6 md:-mt-16" role="img" aria-label={fields.map(([k, v]) => `${k}: ${v.replace(/"/g, '')}`).join(', ')}>
+          <div className="glass glass-thick relative -mt-12 rounded-panel p-5 sm:p-6 lg:-mt-16" role="img" aria-label={fields.map(([k, v]) => `${k}: ${v.replace(/"/g, '')}`).join(', ')}>
             <div className="mb-4 flex items-center gap-2 font-mono text-xs">
               <span className="rounded-md bg-ok/15 px-2 py-0.5 text-ok">GET</span>
               <span className="text-ink2">{profile.api.path}</span>
