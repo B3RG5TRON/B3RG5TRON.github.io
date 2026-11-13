@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Eduardo Bergstron · Desenvolvedor Full Stack</title>
+    <meta name="description" content="Desenvolvedor full stack em Porto Alegre. Aplicações web e mobile com .NET, React e Node.js, APIs REST e integrações de sistemas." />
+    <meta property="og:title" content="Eduardo Bergstron · Desenvolvedor Full Stack" />
+    <meta property="og:description" content="Aplicações web e mobile com .NET, React e Node.js, APIs REST e integrações de sistemas." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://b3rg5tron.github.io/" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script>
+      // Apply the saved or system theme before the first paint, so the page never flashes.
+      try {
+        var t = localStorage.getItem('theme');
+        if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.classList.toggle('dark', t === 'dark');
+      } catch (e) { document.documentElement.classList.add('dark'); }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

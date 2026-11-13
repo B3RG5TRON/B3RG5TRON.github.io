@@ -1,0 +1,5 @@
+node_modules
+dist
+.profile
+src/generated/
+public/assets/
