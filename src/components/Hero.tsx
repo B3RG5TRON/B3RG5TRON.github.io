@@ -2,6 +2,8 @@ import type { Lang } from '../site';
 import { site } from '../site';
 import { ui } from '../ui';
 import { GitHubIcon, LinkedInIcon, MailIcon } from './Icons';
+import photo480 from '../assets/eduardo-480.webp';
+import photo800 from '../assets/eduardo-800.webp';
 
 const fmt = (iso: string, lang: Lang) => {
   const d = new Date(iso);
@@ -65,24 +67,39 @@ export function Hero({ lang }: { lang: Lang }) {
           <p className="mt-8 font-mono text-xs text-ink3">{repos} · {ui.updated[lang]} {fmt(github.fetchedAt, lang)}</p>
         </div>
 
-        <div className="glass rounded-panel p-5 sm:p-6" role="img" aria-label={fields.map(([k, v]) => `${k}: ${v.replace(/"/g, '')}`).join(', ')}>
-          <div className="mb-4 flex items-center gap-2 font-mono text-xs">
-            <span className="rounded-md bg-ok/15 px-2 py-0.5 text-ok">GET</span>
-            <span className="text-ink2">{profile.api.path}</span>
-            <span className="ml-auto text-ink3">200 OK</span>
+        {/* Portrait with the API panel floating over its lower edge, like a sheet over content. */}
+        <div className="w-full min-w-0 md:ml-auto md:max-w-sm">
+          <figure className="mx-auto w-64 overflow-hidden rounded-panel sm:w-72 md:w-full hairline border bg-surface shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
+            <img
+              src={photo800}
+              srcSet={`${photo480} 480w, ${photo800} 800w`}
+              sizes="(min-width: 768px) 24rem, 18rem"
+              width={800}
+              height={1000}
+              alt={ui.photoAlt[lang]}
+              fetchPriority="high"
+              className="aspect-[4/5] w-full object-cover object-top"
+            />
+          </figure>
+          <div className="glass glass-thick relative -mt-12 rounded-panel p-5 sm:p-6 md:-mt-16 lg:-ml-16" role="img" aria-label={fields.map(([k, v]) => `${k}: ${v.replace(/"/g, '')}`).join(', ')}>
+            <div className="mb-4 flex items-center gap-2 font-mono text-xs">
+              <span className="rounded-md bg-ok/15 px-2 py-0.5 text-ok">GET</span>
+              <span className="text-ink2">{profile.api.path}</span>
+              <span className="ml-auto text-ink3">200 OK</span>
+            </div>
+            <pre className="overflow-x-auto font-mono text-[13px] leading-7 sm:text-sm">
+              <span className="text-ink3">{'{'}</span>
+              {'\n'}
+              {fields.map(([k, v], i) => (
+                <span key={k}>
+                  {'  '}<span className="text-accent">"{k}"</span><span className="text-ink3">: </span><JsonValue v={v} />
+                  {i < fields.length - 1 && <span className="text-ink3">,</span>}
+                  {'\n'}
+                </span>
+              ))}
+              <span className="text-ink3">{'}'}</span>
+            </pre>
           </div>
-          <pre className="overflow-x-auto font-mono text-[13px] leading-7 sm:text-sm">
-            <span className="text-ink3">{'{'}</span>
-            {'\n'}
-            {fields.map(([k, v], i) => (
-              <span key={k}>
-                {'  '}<span className="text-accent">"{k}"</span><span className="text-ink3">: </span><JsonValue v={v} />
-                {i < fields.length - 1 && <span className="text-ink3">,</span>}
-                {'\n'}
-              </span>
-            ))}
-            <span className="text-ink3">{'}'}</span>
-          </pre>
         </div>
       </div>
     </section>

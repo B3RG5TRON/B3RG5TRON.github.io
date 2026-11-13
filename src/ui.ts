@@ -30,6 +30,7 @@ export const ui = {
   viewCredential: { en: 'View credential', pt: 'Ver credencial' },
   writeMe: { en: 'Send an e-mail', pt: 'Enviar e-mail' },
   updated: { en: 'Data from GitHub, updated', pt: 'Dados do GitHub, atualizados em' },
+  photoAlt: { en: 'Portrait of Eduardo Bergstron', pt: 'Retrato de Eduardo Bergstron' },
   footerNote: { en: 'Built with React, Vite and Tailwind. Texts shared with the GitHub profile README.', pt: 'Feito com React, Vite e Tailwind. Textos compartilhados com o README do perfil no GitHub.' },
   close: { en: 'Close', pt: 'Fechar' },
 } satisfies Record<string, L | Record<string, L> | ((...a: never[]) => L)>;

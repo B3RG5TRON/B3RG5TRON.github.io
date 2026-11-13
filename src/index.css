@@ -59,6 +59,12 @@ body {
     backdrop-filter: blur(22px) saturate(170%);
     -webkit-backdrop-filter: blur(22px) saturate(170%);
   }
+  /* Thicker material for a panel that sits over a photo: text stays legible over light and busy pixels. */
+  .glass-thick {
+    background: linear-gradient(180deg, rgb(var(--surface) / 0.82), rgb(var(--surface) / 0.72));
+    backdrop-filter: blur(32px) saturate(160%);
+    -webkit-backdrop-filter: blur(32px) saturate(160%);
+  }
   .hairline { border-color: var(--hairline); }
   .pill {
     @apply inline-flex items-center rounded-full px-3 py-1 font-mono text-[12px] text-ink2;
