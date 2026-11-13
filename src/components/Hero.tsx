@@ -68,7 +68,7 @@ export function Hero({ lang }: { lang: Lang }) {
         </div>
 
         {/* Portrait with the API panel floating over its lower edge, like a sheet over content. */}
-        <div className="w-full min-w-0 md:ml-auto md:max-w-sm">
+        <div className="mx-auto w-full min-w-0 md:max-w-sm">
           <figure className="mx-auto w-64 overflow-hidden rounded-panel sm:w-72 md:w-full hairline border bg-surface shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]">
             <img
               src={photo800}
@@ -81,7 +81,7 @@ export function Hero({ lang }: { lang: Lang }) {
               className="aspect-[4/5] w-full object-cover object-top"
             />
           </figure>
-          <div className="glass glass-thick relative -mt-12 rounded-panel p-5 sm:p-6 md:-mt-16 lg:-ml-16" role="img" aria-label={fields.map(([k, v]) => `${k}: ${v.replace(/"/g, '')}`).join(', ')}>
+          <div className="glass glass-thick relative -mt-12 rounded-panel p-5 sm:p-6 md:-mt-16" role="img" aria-label={fields.map(([k, v]) => `${k}: ${v.replace(/"/g, '')}`).join(', ')}>
             <div className="mb-4 flex items-center gap-2 font-mono text-xs">
               <span className="rounded-md bg-ok/15 px-2 py-0.5 text-ok">GET</span>
               <span className="text-ink2">{profile.api.path}</span>
