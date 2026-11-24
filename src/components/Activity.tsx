@@ -4,7 +4,7 @@ import { useReveal } from '../hooks';
 
 const LEVELS = [0.07, 0.3, 0.55, 0.8, 1];
 
-/** Contribution calendar of the last 12 months, one column per week, and the language split. */
+/** Contribution calendar of the last 12 months, one column per week, and the language split, stacked so the calendar always fits its width. */
 export function Activity({ lang }: { lang: Lang }) {
   const ref = useReveal<HTMLDivElement>();
   const { contributions, languages, includesPrivate } = site.github;
@@ -26,28 +26,27 @@ export function Activity({ lang }: { lang: Lang }) {
   const colour = (name: string, c: string | null) => site.languageColours[name] ?? c ?? '#8b8b94';
 
   return (
-    <div ref={ref} className="reveal mx-auto grid max-w-page gap-4 px-4 sm:px-6 lg:grid-cols-[1.6fr_1fr]">
+    <div ref={ref} className="reveal mx-auto grid max-w-page gap-4 px-4 sm:px-6">
       {site.show.heatmap && contributions && (
         <a href={site.profile.github} className="card focus-ring block min-w-0 p-5 sm:p-6">
           <div className="mb-4 flex items-baseline justify-between gap-4">
             <h3 className="font-semibold">{ui.activityTitle[lang]}</h3>
             <p className="font-mono text-xs text-ink3"><span className="text-ink">{contributions.total}</span> {ui.contributions[lang]}</p>
           </div>
-          <div className="overflow-x-auto pb-1">
-            <div className="flex w-max gap-[3px]" role="img" aria-label={`${contributions.total} ${ui.contributions[lang]}`}>
-              {weeks.map((w, i) => (
-                <div key={i} className="flex flex-col gap-[3px]">
-                  {w.map((d, j) => (
-                    <span
-                      key={j}
-                      title={d.date ? `${d.date}: ${d.count}` : undefined}
-                      className="block h-[11px] w-[11px] rounded-[3px]"
-                      style={d.count < 0 ? { visibility: 'hidden' } : { background: `rgb(var(--accent) / ${LEVELS[level(d.count)]})` }}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
+          <div
+            className="grid grid-flow-col grid-rows-7 gap-[2px] sm:gap-[3px]"
+            style={{ gridTemplateColumns: `repeat(${weeks.length}, minmax(0, 1fr))` }}
+            role="img"
+            aria-label={`${contributions.total} ${ui.contributions[lang]}`}
+          >
+            {weeks.flat().map((d, i) => (
+              <span
+                key={i}
+                title={d.date ? `${d.date}: ${d.count}` : undefined}
+                className="block aspect-square w-full rounded-[1px] sm:rounded-[3px]"
+                style={d.count < 0 ? { visibility: 'hidden' } : { background: `rgb(var(--accent) / ${LEVELS[level(d.count)]})` }}
+              />
+            ))}
           </div>
         </a>
       )}
@@ -62,7 +61,7 @@ export function Activity({ lang }: { lang: Lang }) {
               <span key={l.name} style={{ width: `${(l.bytes / total) * 100}%`, background: colour(l.name, l.color) }} />
             ))}
           </div>
-          <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2.5">
+          <ul className="mt-5 grid grid-cols-2 gap-x-6 gap-y-2.5 md:grid-cols-4">
             {langs.map((l) => (
               <li key={l.name} className="flex items-center gap-2 text-sm">
                 <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: colour(l.name, l.color) }} aria-hidden />
