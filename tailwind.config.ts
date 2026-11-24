@@ -16,6 +16,7 @@ export default {
         ink3: v('text3'),
         accent: v('accent'),
         ok: v('ok'),
+        warn: v('warn'),
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
